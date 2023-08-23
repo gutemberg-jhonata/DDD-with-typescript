@@ -2,15 +2,27 @@ import { Address } from "./address"
 
 export class Customer {
 
-    _id: string
-    _name: string
-    _address!: Address
-    _activate: boolean = true
+    private _id: string
+    private _name: string
+    private _address!: Address
+    private _activate: boolean = true
 
     constructor(id: string, name: string) {
         this._id = id
         this._name = name
         this.validate()
+    }
+
+    get name(): string {
+        return this._name
+    }
+
+    set address(address: Address) {
+        this._address = address
+    }
+
+    isActive() {
+        return this._activate
     }
 
     validate() {
@@ -21,24 +33,6 @@ export class Customer {
             throw new Error("Name is required")
         }
     }
-
-    /*get id(): string {
-        return this._id
-    }
-
-    
-    get name(): string {
-        return this._name
-    }
-
-    
-    get address(): string {
-        return this._address
-    }
-
-    set address(address: string) {
-        this._address = address
-    }*/
 
     changeName(name: string) {
         this._name = name
@@ -53,10 +47,6 @@ export class Customer {
 
     deactivate() {
         this._activate = false
-    }
-
-    set address(address: Address) {
-        this._address = address
     }
 
 }
